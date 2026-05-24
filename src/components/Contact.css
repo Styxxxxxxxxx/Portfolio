@@ -1,0 +1,107 @@
+/* Contact links styling */
+
+.ctSection {
+  width: min(900px, 100%);
+  margin: 0 auto;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+
+  transform: translateY(18px);
+  opacity: 0;
+  transition: transform 360ms ease, opacity 360ms ease;
+}
+
+.ctSection[data-visible='true'] {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.ctSocial {
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 18px;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  text-align: center;
+}
+
+.ctSocialTitle {
+  margin: 0 0 14px;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  color: var(--text);
+  text-align: center;
+}
+
+.ctSocialGrid {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 6px;
+  justify-content: center;
+}
+
+.ctSocialGrid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.ctSocialGrid::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--border) 70%, transparent);
+  border-radius: 999px;
+}
+
+.ctSocialBtn {
+  scroll-snap-align: start;
+  flex: 1 1 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text-h);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 12px 12px;
+  background: color-mix(in srgb, var(--social-bg) 85%, transparent);
+  transition: transform 0.06s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.ctSocialBtn:hover {
+  box-shadow: var(--shadow);
+  border-color: var(--accent-border);
+}
+
+.ctSocialBtn:active {
+  transform: translateY(1px);
+}
+
+.ctIcon {
+  width: 34px;
+  height: 34px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--accent-bg) 18%, var(--bg));
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+@media (max-width: 980px) {
+  .ctSocialGrid {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .ctSocialBtn {
+    flex: 1 1 calc(50% - 6px);
+  }
+}
+
+@media (max-width: 480px) {
+  .ctSocialBtn {
+    flex: 1 1 100%;
+  }
+}

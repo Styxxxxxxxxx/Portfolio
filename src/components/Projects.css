@@ -1,0 +1,283 @@
+/* Projects.css */
+
+.pSection {
+  padding: 60px 24px 80px;
+  position: relative;
+  background: linear-gradient(135deg, 
+    transparent 0%,
+    color-mix(in srgb, var(--accent-bg) 3%, transparent) 50%,
+    transparent 100%
+  );
+}
+
+.pInner {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+}
+
+.pHeader {
+  margin-bottom: 48px;
+  text-align: center;
+  position: relative;
+}
+
+.pHeader h2 {
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.2;
+  margin: 0 0 12px;
+  background: linear-gradient(135deg, var(--text-h) 0%, var(--accent) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: -0.5px;
+}
+
+.pHeader h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  border-radius: 3px;
+}
+
+.pHeader p {
+  margin: 16px 0 0;
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 28px;
+  margin-top: 20px;
+}
+
+.pCard {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: rgba(var(--bg-rgb), 0.7);
+  backdrop-filter: blur(10px);
+  padding: 28px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.pCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    color-mix(in srgb, var(--accent) 10%, transparent) 0%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.pCard:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.pCard:hover::before {
+  opacity: 1;
+}
+
+.pCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.pBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+.pCard:hover .pBadge {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.pExternal {
+  color: var(--text-h);
+  font-weight: 900;
+  font-size: 20px;
+  transition: transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(var(--accent-rgb), 0.1);
+}
+
+.pCard:hover .pExternal {
+  transform: translate(4px, -4px);
+  background: var(--accent);
+  color: white;
+}
+
+.pCardLogoWrap {
+  margin: 0 0 14px;
+}
+
+.pCardLogo {
+  display: block;
+  width: 84px;
+  height: 84px;
+  object-fit: contain;
+  border-radius: 18px;
+  background: rgba(var(--accent-rgb), 0.08);
+  padding: 10px;
+  border: 1px solid rgba(var(--accent-rgb), 0.18);
+}
+
+@media (max-width: 768px) {
+  .pCardLogo {
+    width: 72px;
+    height: 72px;
+    border-radius: 16px;
+  }
+}
+
+.pCardTitle {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--text-h);
+  line-height: 1.3;
+  letter-spacing: -0.3px;
+  transition: color 0.2s ease;
+}
+
+
+.pCard:hover .pCardTitle {
+  color: var(--accent);
+}
+
+.pCardDesc {
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.pCardMeta {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 13px;
+}
+
+.pCardMeta strong {
+  color: var(--text-h);
+  font-weight: 700;
+}
+
+.pCardMeta br {
+  margin-bottom: 4px;
+}
+
+/* Icon animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pCard {
+  animation: slideInUp 0.5s ease-out backwards;
+}
+
+.pCard:nth-child(1) { animation-delay: 0.1s; }
+.pCard:nth-child(2) { animation-delay: 0.2s; }
+.pCard:nth-child(3) { animation-delay: 0.3s; }
+.pCard:nth-child(4) { animation-delay: 0.4s; }
+.pCard:nth-child(5) { animation-delay: 0.5s; }
+.pCard:nth-child(6) { animation-delay: 0.6s; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .pSection {
+    padding: 40px 20px 60px;
+  }
+  
+  .pGrid {
+    gap: 20px;
+    grid-template-columns: 1fr;
+  }
+  
+  .pCard {
+    padding: 22px;
+  }
+  
+  .pCardTitle {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .pGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.pTechStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.pTech {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  background: rgba(var(--accent-rgb), 0.1);
+  color: var(--accent);
+  font-weight: 600;
+}

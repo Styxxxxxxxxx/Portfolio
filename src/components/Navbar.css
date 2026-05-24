@@ -1,0 +1,73 @@
+/* Navbar styling (separated from App.css) */
+
+.nlHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nlBrand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+}
+
+.nlBrandDot {
+  color: var(--accent);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.nlBrandName {
+  letter-spacing: -0.2px;
+}
+
+.nlNav {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.nlNav a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 15px;
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+
+.nlNav a:hover {
+  color: var(--text-h);
+  background: color-mix(in srgb, var(--accent-bg) 35%, transparent);
+}
+
+.nlCta {
+  text-decoration: none;
+  color: var(--text-h);
+  font-size: 15px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--social-bg);
+  box-shadow: none;
+  transition: box-shadow 0.2s ease, transform 0.06s ease;
+}
+
+.nlCta:hover {
+  box-shadow: var(--shadow);
+}
+
+@media (max-width: 980px) {
+  .nlNav {
+    display: none;
+  }
+}
+
