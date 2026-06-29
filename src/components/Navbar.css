@@ -30,6 +30,36 @@
   letter-spacing: -0.2px;
 }
 
+/* Hamburger menu button */
+.nlMenuBtn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: var(--text);
+  font-size: 24px;
+  z-index: 100;
+}
+
+/* Mobile navigation overlay */
+.nlNavOverlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 50;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nlNavOverlay.open {
+  opacity: 1;
+}
+
 .nlNav {
   display: flex;
   gap: 18px;
@@ -42,6 +72,7 @@
   font-size: 15px;
   padding: 8px 10px;
   border-radius: 10px;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .nlNav a:hover {
@@ -65,9 +96,110 @@
   box-shadow: var(--shadow);
 }
 
+/* Mobile slide menu */
+.nlMobileMenu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 300px;
+  max-width: 80%;
+  height: 100%;
+  background: var(--bg);
+  padding: 80px 30px 30px;
+  z-index: 100;
+  transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.nlMobileMenu.open {
+  right: 0;
+}
+
+.nlMobileMenu a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 18px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+.nlMobileMenu.open a {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Staggered animation for mobile links */
+.nlMobileMenu a:nth-child(1) { transition-delay: 0.05s; }
+.nlMobileMenu a:nth-child(2) { transition-delay: 0.1s; }
+.nlMobileMenu a:nth-child(3) { transition-delay: 0.15s; }
+.nlMobileMenu a:nth-child(4) { transition-delay: 0.2s; }
+.nlMobileMenu a:nth-child(5) { transition-delay: 0.25s; }
+
+.nlMobileMenu a:hover {
+  background: color-mix(in srgb, var(--accent-bg) 35%, transparent);
+  color: var(--text-h);
+}
+
+.nlMobileMenu .nlCta {
+  text-align: center;
+  margin-top: 10px;
+  padding: 14px;
+  font-size: 17px;
+}
+
+/* Close button */
+.nlCloseBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--text);
+  padding: 8px;
+  transition: transform 0.2s ease;
+}
+
+.nlCloseBtn:hover {
+  transform: rotate(90deg);
+}
+
+/* Desktop styles */
+@media (min-width: 981px) {
+  .nlMenuBtn,
+  .nlMobileMenu,
+  .nlNavOverlay {
+    display: none !important;
+  }
+  
+  .nlNav {
+    display: flex !important;
+  }
+}
+
+/* Mobile styles */
 @media (max-width: 980px) {
   .nlNav {
     display: none;
   }
+  
+  .nlMenuBtn {
+    display: block;
+  }
+  
+  .nlNavOverlay {
+    display: block;
+  }
+  
+  .nlMobileMenu {
+    display: flex;
+  }
 }
-
