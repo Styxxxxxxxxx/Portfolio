@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 
-const Navbar = () => {
+const Navbar = ({ onServicesClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Prevent body scroll when menu is open
@@ -36,7 +36,7 @@ const Navbar = () => {
         <nav className="nlNav">
           <a href="#home">Home</a>
           <a href="#about">About</a>
-          <a href="#services">Services</a>
+          <button className="nlServiceBtn" type="button" onClick={onServicesClick}>Services</button>
           <a href="#contact">Contact</a>
         </nav>
 
@@ -67,7 +67,7 @@ const Navbar = () => {
         </button>
         <a href="#home" onClick={closeMenu}>Home</a>
         <a href="#about" onClick={closeMenu}>About</a>
-        <a href="#services" onClick={closeMenu}>Services</a>
+        <button className="nlServiceBtn" type="button" onClick={() => { closeMenu(); onServicesClick() }}>Services</button>
         <a href="#contact" onClick={closeMenu}>Contact</a>
       </nav>
     </>

@@ -1,5 +1,5 @@
 import './Services.css'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 const services = [
   {
@@ -18,14 +18,12 @@ const services = [
   },
 ]
 
-function Services() {
-  const [isOpen, setIsOpen] = useState(false)
-
+function Services({ isOpen, onClose }) {
   useEffect(() => {
     if (!isOpen) return undefined
 
     const closeOnEscape = (event) => {
-      if (event.key === 'Escape') setIsOpen(false)
+      if (event.key === 'Escape') onClose()
     }
 
     document.body.style.overflow = 'hidden'
@@ -35,23 +33,12 @@ function Services() {
       document.body.style.overflow = ''
       document.removeEventListener('keydown', closeOnEscape)
     }
-  }, [isOpen])
+  }, [isOpen, onClose])
 
   return (
-    <section id="services" className="sSection" aria-label="Services and fees">
-      <div className="sHeader">
-        <p className="sEyebrow">Services & fees</p>
-        <h2>Frontend development, simply.</h2>
-        <p className="sIntro">
-          Part-time support or a focused build, shaped around the work you need done.
-        </p>
-        <button className="sTrigger" type="button" onClick={() => setIsOpen(true)}>
-          View services & fees <span aria-hidden="true">↗</span>
-        </button>
-      </div>
-
+    <>
       {isOpen && (
-        <div className="sModalBackdrop" onClick={() => setIsOpen(false)}>
+        <div className="sModalBackdrop" onClick={onClose}>
           <div
             className="sModal"
             role="dialog"
@@ -64,7 +51,7 @@ function Services() {
                 <p className="sEyebrow">Services & fees</p>
                 <h2 id="services-modal-title">A clear place to start.</h2>
               </div>
-              <button className="sClose" type="button" onClick={() => setIsOpen(false)} aria-label="Close services">
+              <button className="sClose" type="button" onClick={onClose} aria-label="Close services">
                 ×
               </button>
             </div>
@@ -84,13 +71,13 @@ function Services() {
               ))}
             </div>
 
-            <a className="sModalCta" href="#contact" onClick={() => setIsOpen(false)}>
+            <a className="sModalCta" href="#contact" onClick={onClose}>
               Discuss your project <span aria-hidden="true">→</span>
             </a>
           </div>
         </div>
       )}
-    </section>
+    </>
   )
 }
 
