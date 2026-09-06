@@ -11,7 +11,7 @@ const services = [
   },
   {
     label: 'Project-based',
-    price: '₱8,000',
+    price: '₱3,000',
     cadence: 'starting at',
     description: 'A focused frontend build for a landing page, portfolio, or small web experience.',
     features: ['Custom page implementation', 'Mobile-friendly layouts', 'Clean handoff and revisions'],

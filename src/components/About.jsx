@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from 'react'
 import './About.css'
 
 function About() {
-  const slides = ['Education', 'Skills', 'Hobbies']
+  const slides = ['Education', 'Experience', 'Skills', 'Hobbies']
   const [active, setActive] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
 
@@ -84,6 +84,32 @@ function About() {
                       </div>
                       <div className="aItemMeta">
                          STI Colleges SJDM
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="aSlide" aria-label="Experience">
+                <div className="aCard">
+                  <h3 className="aCardTitle">Experience</h3>
+
+                  <div className="aList" aria-label="Experience list">
+                    <div className="aItem">
+                      <div className="aItemTop">
+                        <div className="aItemTitle">Data Entry Assistant</div>
+                      </div>
+                      <div className="aItemMeta">
+                        Embassy
+                      </div>
+                    </div>
+
+                    <div className="aItem">
+                      <div className="aItemTop">
+                        <div className="aItemTitle">Data Analyst Intern</div>
+                      </div>
+                      <div className="aItemMeta">
+                        Evergreen Realty Philippines
                       </div>
                     </div>
                   </div>
