@@ -38,7 +38,6 @@ const Navbar = () => {
           <a href="#about">About</a>
           <a href="#services">Services</a>
           <a href="#contact">Contact</a>
-          <a href="#login" className="nlCta">Login</a>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -70,7 +69,6 @@ const Navbar = () => {
         <a href="#about" onClick={closeMenu}>About</a>
         <a href="#services" onClick={closeMenu}>Services</a>
         <a href="#contact" onClick={closeMenu}>Contact</a>
-        <a href="#login" className="nlCta" onClick={closeMenu}>Login</a>
       </nav>
     </>
   );
