@@ -1,4 +1,5 @@
 import './Services.css'
+import { useEffect, useState } from 'react'
 
 const services = [
   {
@@ -18,34 +19,77 @@ const services = [
 ]
 
 function Services() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+    if (!isOpen) return undefined
+
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') setIsOpen(false)
+    }
+
+    document.body.style.overflow = 'hidden'
+    document.addEventListener('keydown', closeOnEscape)
+
+    return () => {
+      document.body.style.overflow = ''
+      document.removeEventListener('keydown', closeOnEscape)
+    }
+  }, [isOpen])
+
   return (
     <section id="services" className="sSection" aria-label="Services and fees">
       <div className="sHeader">
         <p className="sEyebrow">Services & fees</p>
-        <h2>Frontend development that fits the work.</h2>
+        <h2>Frontend development, simply.</h2>
         <p className="sIntro">
-          Choose ongoing support or a focused build. Every fee starts with a quick conversation about your scope.
+          Part-time support or a focused build, shaped around the work you need done.
         </p>
+        <button className="sTrigger" type="button" onClick={() => setIsOpen(true)}>
+          View services & fees <span aria-hidden="true">↗</span>
+        </button>
       </div>
 
-      <div className="sGrid">
-        {services.map((service) => (
-          <article className="sCard" key={service.label}>
-            <div className="sCardTop">
-              <h3>{service.label}</h3>
-              <span className="sPriceNote">{service.cadence}</span>
+      {isOpen && (
+        <div className="sModalBackdrop" onClick={() => setIsOpen(false)}>
+          <div
+            className="sModal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="services-modal-title"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="sModalHeader">
+              <div>
+                <p className="sEyebrow">Services & fees</p>
+                <h2 id="services-modal-title">A clear place to start.</h2>
+              </div>
+              <button className="sClose" type="button" onClick={() => setIsOpen(false)} aria-label="Close services">
+                ×
+              </button>
             </div>
-            <div className="sPrice">{service.price}</div>
-            <p className="sDescription">{service.description}</p>
-            <ul className="sFeatures">
-              {service.features.map((feature) => (
-                <li key={feature}>{feature}</li>
+
+            <div className="sModalList">
+              {services.map((service) => (
+                <article className="sModalItem" key={service.label}>
+                  <div className="sModalItemTop">
+                    <h3>{service.label}</h3>
+                    <div className="sModalPrice">{service.price} <span>{service.cadence}</span></div>
+                  </div>
+                  <p>{service.description}</p>
+                  <ul>
+                    {service.features.map((feature) => <li key={feature}>{feature}</li>)}
+                  </ul>
+                </article>
               ))}
-            </ul>
-            <a className="sCta" href="#contact">Discuss your project <span aria-hidden="true">→</span></a>
-          </article>
-        ))}
-      </div>
+            </div>
+
+            <a className="sModalCta" href="#contact" onClick={() => setIsOpen(false)}>
+              Discuss your project <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      )}
     </section>
   )
 }
